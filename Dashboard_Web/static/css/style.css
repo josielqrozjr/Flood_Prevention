@@ -1,0 +1,21 @@
+/* Gerais */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Barra de navegação */
+header, .navbar {
+    background-color: #260D33;
+}
+
+#logo {
+    width: 70px;
+}
