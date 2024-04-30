@@ -46,7 +46,7 @@ myTopicWaterLevel = "/mensagem/nivelDaAgua"
 
 @app.route('/')
 def index():
-    return render_template("login.html")
+    return render_template("home.html")
 
 @app.route('/logoff')
 def logoff():
@@ -56,11 +56,9 @@ def logoff():
 def home():
     return render_template("home.html")
 
-@app.route()
-
 @app.route('/cadastro_devices')
 def cadastro_devices():
-    return render_template('cadastro_sensors_actuators.html')
+    return render_template('addHardware.html')
 
 @app.route('/cadastro', methods=['POST', 'GET'])
 def cadastro():
