@@ -15,9 +15,8 @@ body {
     background-repeat: no-repeat; /* Evita que a imagem seja repetida */
     background-position: center center; /* Centraliza a imagem no elemento */
     background-attachment: fixed; /* Fixa a imagem de fundo enquanto a página rola */
-  }
+}
   
-
 /* Barra de navegação */
 header, .navbar {
     background-color: #260D33;
