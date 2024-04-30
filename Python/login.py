@@ -22,7 +22,7 @@ def validated_user():
     
 @login.route('/register_user')
 def register_user():
-    return render_template("register_user.html") # Encaminha o usuário para um formulário
+    return render_template("cadastro_users.html") # Encaminha o usuário para um formulário
 
 @login.route('/add_user', methods=['GET','POST'])
 def add_user():
@@ -34,16 +34,16 @@ def add_user():
         user = request.args.get('user', None) # Se a solicitação não for ‘POST’ (ou seja, é ‘GET’), estas linhas tentam obter os valores dos parâmetros ‘user’ e ‘password’ da string de consulta da solicitação. Se esses parâmetros não estiverem presentes, eles serão definidos como None.
         password = request.args.get('password', None) 
     users[user] = password # Esta linha adiciona o usuário e a senha ao dicionário "users"
-    return render_template("users.html", devices=users)
+    return render_template("listar_editar_remover", users=users)
     
 @login.route('/list_users')
 def list_users():
     global users
-    return render_template("users.html", devices=users)
+    return render_template("listar_editar_remover", users=users)
 
 @login.route('/remove_user')
 def remove_user():
-    return render_template("remove_user.html", devices=users)
+    return render_template("listar_editar_remover", users=users)
                        
 @login.route('/del_user', methods=['GET','POST'])
 def del_user():
@@ -53,5 +53,5 @@ def del_user():
     else:
         user = request.args.get('user', None)
     users.pop(user)
-    return render_template("users.html", devices=users)
+    return render_template("listar_editar_remover", users=users)
 

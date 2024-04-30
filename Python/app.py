@@ -2,8 +2,8 @@
 # app.py
 from flask import Flask, render_template, request,redirect, url_for,jsonify
 from login import login
-from sensors import sensors
-from actuators import actuators
+from sensors import sensors, sensors_list
+from actuators import actuators, actuators_list
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
 import json
@@ -56,6 +56,28 @@ def logoff():
 def home():
     return render_template("home.html")
 
+@app.route()
+
+@app.route('/cadastro_devices')
+def cadastro_devices():
+    return render_template('cadastro_sensors_actuators.html')
+
+@app.route('/cadastro', methods=['POST', 'GET'])
+def cadastro():
+    global actuators_list, sensors_list
+    if request.method == 'POST':
+        device_name = request.form['device_name']
+        device_value = request.form['device_value']
+        device_type = request.form['device_type']
+    else:
+        device_name = request.args.get('device_name', None)
+        device_value = request.args.get('device_value', None)
+        device_type = request.form['device_type', None]
+    if device_type == 'sensor':
+        sensors_list[device_name] = device_value
+    elif device_type == 'actuator':
+        actuators_list[device_name] = device_value
+    return render_template('listar_editar_remover.html')
 
 @app.route('/dashboard')
 def dashboard():
