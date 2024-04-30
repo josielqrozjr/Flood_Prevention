@@ -1,9 +1,10 @@
 html {
-    background: url("../img/home.png") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: linear-gradient(180deg, rgba(0,63,105,1) 0%, rgba(63,34,103,1) 100%); /* Gradiente linear vertical */
+    background-image: url("../img/bg-wallpaper.svg"), linear-gradient(180deg, rgba(0,63,105,1) 0%, rgba(63,34,103,1) 100%);
+    background-size: cover; /* Ajusta a imagem para cobrir todo o elemento */
+    background-repeat: no-repeat; /* Evita que a imagem seja repetida */
+    background-position: center center; /* Centraliza a imagem no elemento */
+    background-attachment: fixed; /* Fixa a imagem de fundo enquanto a página rola */
     position: relative;
 }
 
