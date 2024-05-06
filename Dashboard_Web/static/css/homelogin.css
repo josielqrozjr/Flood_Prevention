@@ -1,5 +1,5 @@
-html {
-    background: url("../img/backgroundgeral.png") no-repeat center center fixed;
+body {
+    background: url("../img/backgroundgeral.svg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -22,8 +22,9 @@ html {
     left: 47%;
     transform: translate(-50%, -50%);
     color: aliceblue;
-    font-family: "Julius Sans One";
     text-align: center;
+    font-size: 2rem;
+    font-weight: 200;
 }
 
 .content {
@@ -33,11 +34,9 @@ html {
     left: 47%;
     transform: translateX(-50%);
     /* Move o conteúdo horizontalmente para o centro */
-    font-family: "Montserrat";
     color: aliceblue;
-    font-size: small;
-    font-size: larger;
     text-align: center;
+    font-size: 1.2rem;
 }
 
 .content_form {
@@ -71,17 +70,26 @@ html {
 
 input::placeholder {
     color: aliceblue;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+input:focus, input:hover {
+    outline: #F5F5F5;
+    border: 1px solid #F5F5F5;
 }
 
 .login {
-    font-family: "Julius Sans One";
     background-color: rgba(227, 227, 227, 0.50);
     border-style: none;
     border-radius: 30px;
-    height: 35px;
-    padding: 0px 10px 0px 10px;
+    padding: 0px 20px;
     width: 400px;
-    height: 45px;
+    height: 50px;
+    color: #F5F5F5;
+    font-size: 1rem;
 }
 
 .esquecer_senha{
@@ -91,9 +99,20 @@ input::placeholder {
 }
 
 .btn_login{
-    border-style: none;
-    height: 45px;
-    width: 123.5px;
-    border-radius: 30px;
-    font-weight: bold;
+    margin-top: 48px;
+}
+
+.list-icons {
+    margin-top: 15%;
+    font-size: 30px;
+    color: aliceblue;
+    position: absolute;
+    bottom: 30;
+    left: 50%; 
+    transform: translateX(-50%); 
+}
+
+.list-icons i {
+    margin: 2px;
+    cursor: pointer;
 }
