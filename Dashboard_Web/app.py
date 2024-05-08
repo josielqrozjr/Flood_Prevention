@@ -1,19 +1,16 @@
 # app.py
 # pip install flask-mqtt
 # pip install flask-socketio
+#08/05/2024 - Josiel
 
 from flask import Flask, render_template, request, redirect, url_for,jsonify
 from login import login
-from sensors import sensors
-from actuators import actuators
+from devices import devices
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
 import json
 
 #https://wokwi.com/projects/394918938756685825
-
-actuators_list = ["Led", "Servo Motor"]
-sensors_list = ["DHT22", "HC-ST04"]
 
 temperature = 0
 humidity = 0
@@ -24,10 +21,10 @@ mensagem_nivel_da_agua = ""
 
 app= Flask(__name__)
 ## __name__ is the application name
+SocketIO = SocketIO(app)
 
 app.register_blueprint(login, url_prefix='/')
-app.register_blueprint(sensors, url_prefix='/')
-app.register_blueprint(actuators, url_prefix='/')
+app.register_blueprint(devices, url_prefix='/')
 
 
 app.config['MQTT_BROKER_URL'] = 'mqtt-dashboard.com'
@@ -60,30 +57,6 @@ def logoff():
 def home():
     return render_template("home.html")
 
-@app.route('/register_devices')
-def register_devices():
-    return render_template("addHardware.html")
-
-@app.route('/add_device', methods=['POST', 'GET'])
-def add_device():
-    global actuators_list, sensors_list
-    if request.method == 'POST':
-        device_name = request.form['device_name']
-        device_type = request.form['device_type']
-    else:
-        device_name = request.args.get('device_name', None)
-        device_type = request.args.get['device_type', None]
-    if device_type == 'sensor':
-        sensors_list.append(device_name)
-    elif device_type == 'actuator':
-        actuators_list.append(device_name)
-    return redirect("/devices_list")
-
-@app.route('/devices_list')
-def devices_list():
-    global actuators_list, sensors_list
-    return render_template("devicesList.html", actuators=actuators_list, sensors=sensors_list)
-
 @app.route('/dashboard') 
 def dashboard():
     global temperature, humidity, mensagem_de_alerta, mensagem_nivel_da_agua, alerta_value
@@ -97,6 +70,12 @@ def publish_message():
     request_data = request.get_json()
     publish_result = mqtt_client.publish(request_data['topic'], request_data['message'])
     return jsonify(publish_result)
+
+# @app.route('/publish_action', methods=['POST'])
+# def publish_action(): 
+#   
+#
+#
 
 # Configuração da conexão com o broker (tópicos)
 @mqtt_client.on_connect()

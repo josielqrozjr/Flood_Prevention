@@ -44,13 +44,24 @@
         <div class="logo">
             <img src="../static/img/logo.svg" class="img-fluid">
         </div>
-        <form class="form mt-5" action = "http://localhost:8080/validated_user" method = "post">
-            <input class="login mb-5" placeholder=" Usuário" name="user">
-            <input type="password" class="login" placeholder=" Senha" name="password">
-            <input type = "submit" class="btn_login btn_geral" value = "Enviar" />
+        <form class="form mt-5" action="http://localhost:8080/validated_user" method="post">
+            <input class="login mb-5" placeholder="Usuário" name="user">
+            <div class="password_position">
+                <input type="password" class="login" id="senha" placeholder="Senha" name="password">
+                <i class="bi bi-eye mt-3" id="eye-toggle"></i>
+            </div>
+            <input type="submit" class="btn_login btn_geral" value="Enviar"/>
         </form>
     </div>
-
+    
 </body>
 
+{% if invalid_credentials %}
+        <div class="alert alert-danger" role="alert">
+            Credenciais inválidas. Por favor, verifique seu usuário e senha.
+        </div>
+        {% endif %}
+
+
+<script src="../static/js/password.js"></script>
 </html>

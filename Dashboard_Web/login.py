@@ -31,18 +31,19 @@ def login_user():
 
 @login.route('/validated_user', methods=['POST'])
 def validated_user():   
-    if request.method == 'POST': # Verifica se o método de envio das informações ao servidor é POST
-        user = request.form['user']  # Define uma variável "user", que armazena o que o usuário digitou no input com name = "user"
-        password = request.form['password'] # Define uma variável "password", que armazena o que o usuário digitou no input com name = "password"
-        # print(user, password) # Imprime aqui no terminal o "user" e a "passaword" do usuário
-        if user in users and users[user] == password: # Esta condição vefica se o "user" inserido pelo usuário é uma das chaves do dicionário e se no dicionário posição "user" ("user" que o usuário digitou) a senha é igual aquela digitada pelo usuário
+    invalid_credentials = False
+    user = request.form.get('user')
+    password = request.form.get('password')
+
+    if request.method == 'POST':
+        if user in users and users[user] == password:
             return redirect('/dashboard')
-        elif user in adm and user[user] == password:
-            return redirect('/dashboard_adm') # Implementar uma dashboard para adms e outra para usuários normais
+        elif user in adm and adm[user] == password:
+            return redirect('/dashboard_adm')
         else:
-            return '<h1>invalid credentials!</h1>' # Caso não seja, retorna uma página com texto escrito: "invalid credencials"
-    else:
-        return render_template('homeLogin.html') # Caso o método do usuário não seja POST (envio ao servidor), apenas atualiza a página de login, não realizando as verificações
+            invalid_credentials = True
+
+    return render_template('homeLogin.html', invalid_credentials=invalid_credentials, user=user)
 
 
 @login.route('/register_user')
@@ -87,4 +88,3 @@ def del_user():
         user = request.args.get('user', None)
     users.pop(user)
     return render_template("listar_editar_remover", users=users)
-

@@ -100,6 +100,11 @@ input {
     outline: none;
 }
 
+input[type="radio"]:checked + label {
+  color: white; 
+  font-weight: bold; 
+}
+
 input::placeholder {
   color: #F5F5F5;
   font-family: "Montserrat", sans-serif;
