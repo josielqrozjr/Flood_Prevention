@@ -151,17 +151,13 @@ body {
     margin-top: 10px;
 }
 
-.action_button label {
+.action_button button {
     color: #F5F5F5;
-    position: absolute;
     margin-right: 24px;
-    padding: 13px 32px;
+    padding: 13px 2px;
     border-radius: 30px;
     cursor: pointer;
-}
-
-.action_button label:hover {
-    color: #260D33;
+    text-transform: uppercase;
 }
 
 .button {
@@ -177,15 +173,6 @@ body {
     margin-right: 25px;
 }
 
-/* Estilo do botão quando clicado (cor verde) */
-.control.clicked {
-    background-color: green;
-}
-
-/* Estilo do botão quando clicado (cor vermelha) */
-.control.clicked-red {
-    background-color: red;
-}
 
 .date_time {
     display: flex;
@@ -255,9 +242,10 @@ ul {
     margin-bottom: 0px;
 }
 
-input:hover {
-    transition-duration: 0.5s;
+button:hover {
+    transition-duration: 0.25s;
     box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
     background-color: #F5F5F5;
-    border: 2px solid #260D33;
+    border: 0.5px solid #260D33;
+    color: #260D33;
 }

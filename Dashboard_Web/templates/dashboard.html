@@ -4,8 +4,6 @@
     <script defer src="../static/js/hora.js" type="text/javascript" defer></script>
     <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
-
 {% endblock %}
 
 {% block title %}
@@ -52,9 +50,9 @@
                         </ul>
                         <i class="fa-solid fa-triangle-exclamation icon-custom"></i>
                         <div class="action_button">
-                            <input onclick='action(this,this.id);' id="control" class="button" type="button">
-                            <!--<input type="submit" name="botao" value="acionar" action="http//localhost:8080/publish_action" method="post">-->
-                            <label for="control">ACIONAR</label>
+                            <form action="{{ url_for('action_alert') }}" method="POST">
+                                <button type="submit" id="control" class="button">Acionar</button>
+                            </form>
                         </div>
                     </div>
                 </div>

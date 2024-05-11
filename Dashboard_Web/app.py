@@ -64,18 +64,17 @@ def dashboard():
     return render_template("dashboard.html", values=values)
 
 
-# publicar em um tópico a partir da interface web. Configurar esta parte lá no HTML da dashboard, para que quando o botão seja precionado (ligar/desligar) a mesnsagem seja encaminhada para esta rota, afim de enviar ao tópico de "/Botao/alerta", parando ou ligando o sistema IOT.
-@app.route('/publish_message', methods=['GET','POST'])
-def publish_message():
-    request_data = request.get_json()
-    publish_result = mqtt_client.publish(request_data['topic'], request_data['message'])
-    return jsonify(publish_result)
+### AQUI JOSIEL - 11/05/2024 ##############################
+@app.route('/action_alert', methods=['POST'])
+def action_alert():
+    global alerta_value
 
-# @app.route('/publish_action', methods=['POST'])
-# def publish_action(): 
-#   
-#
-#
+    if alerta_value == 'Ligado': # Caso o botão esteja ligado, então publicar para que ele desligue
+        mqtt_client.publish(myTopicButton, '0')
+    elif alerta_value == 'Desligado': # Caso o botão esteja desligado, então publicar para que ele ligue
+        mqtt_client.publish(myTopicButton, '1')   
+    return redirect('/dashboard')
+
 
 # Configuração da conexão com o broker (tópicos)
 @mqtt_client.on_connect()
